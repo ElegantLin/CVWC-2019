@@ -8,10 +8,7 @@ Before we designed our model, we looked into the dataset carefully and the detai
 
 The distribution of bounding box according to size, count and square.
 
-![Count](https://github.com/ElegantLin/CVWC-2019/blob/master/doc/count.png)
-![Square](https://github.com/ElegantLin/CVWC-2019/blob/master/doc/square.png)
-![Width](https://github.com/ElegantLin/CVWC-2019/blob/master/doc/width.png)
-![Height](https://github.com/ElegantLin/CVWC-2019/blob/master/doc/height.png)
+![Details](https://github.com/ElegantLin/CVWC-2019/blob/master/doc/Figure_1.png)
 
 
 ## One-stage Method

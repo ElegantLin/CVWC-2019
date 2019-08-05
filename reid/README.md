@@ -21,7 +21,7 @@ and point the path in the config file to them.
 
 - Step 3: run `CUDA_VISIBLE_DEVICES=<gpu-id> python main.py -c configs/cvwc1.yml` to start training
 
-The pretrained model can be downloaded from [here]()
+The pretrained model can be downloaded from [here](https://drive.google.com/open?id=1SMbemPa2acB9Q3-wWQxpyv3XvT2o69xM)
 
 ## Inference
 

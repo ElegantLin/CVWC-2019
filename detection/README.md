@@ -1,44 +1,44 @@
 # CVWC-2019
 ICCV 2019 Workshop &amp; Challenge on Computer Vision for Wildlife Conservation (CVWC) Detection Track.
 
-## One-stage Method
-We performed SSD on 1 GPU.
-
-## Two-stage Method
+## Method
 We tried faster-RCNN with HRNet as the backbone on 8 GPUs. The structure of HRNet is: 
 ![HRNet For Object Detection](https://github.com/HRNet/HRNet-Object-Detection/blob/master/images/hrnetv2p.png)
 
-## Three-stage Method
-To get a better performance, we tried Cascade-RCNN with HRNet as the backbone on 8 GPUs. The structure of HRNet is the same as the plot above. The structure of Cascade RCNN is
-![Cascade RCNN](https://github.com/ElegantLin/CVWC-2019/blob/master/doc/cascade.png)
-
-## Post-processing
 
 ## Experiment and Results
 
-We trained SSD-512 for 600 epochs, Faster RCNN for 30 epochs and Cascade RCNN for 30 epochs.
+We trained Faster RCNN for 30 epochs. We used the best model according to the validation result. Epoch_25 has the best performance. You should first convert the Pascal VOC format to coco format using [voc2coco]() tools. And then use a fake testing result. Place it as
 
-|                   Method                    |   mAP   | GFLOP | #Param | Sync BN | lr sched | Pre-Trained | Model | log  |
-| :-----------------------------------------: | :-----: | :---: | :----: | :-----: | :------: | :---------: | :---: | ---- |
-|                   SSD-512                   | 0.47114 |       |        |    N    |    *     |             |       |      |
-| Faster RCNN （HRNet, multi-scale training） | 0.60001 | 245.3 | 45.0M  |    Y    |    2x    |             |       |      |
-|            Cascade RCNN（HRNet）            | 0.57970 |       |        |    N    |   20e    |             |       |      |
+```
+--{$YOUR DATA ROOT}
+	--coco
+		--annotations
+			--instances_train2014.json
+			--instances_val2014.json
+			--instances_test2014.json
+		--train2014
+			--[train images]
+		--val2014
+			--[validation images]
+		--test2014
+			--[test images]
+```
+
+And config `data_root` it in your [config file]()
+
+|                   Method                    |     mAP     | GFLOP | #Param | Sync BN | lr sched |                         pre-trained                          |                       detection model                        |           log           | config | result |
+| :-----------------------------------------: | :---------: | :---: | :----: | :-----: | :------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :---------------------: | :----: | :----: |
+| Faster RCNN （HRNet, multi-scale training） | **0.60093** | 245.3 | 45.0M  |    Y    |    2x    | [HRNet_w32](https://1drv.ms/u/s!Aus8VCZ_C_33dYBMemi9xOUFR0w) | [epoch_25.pth](https://drive.google.com/open?id=1nFtlXrhfRX7Yi2PMgPgniBAn-MN4js9X) | [20190801_010901.log]() |        |        |
 
 ## Other Experiments 
 
-|              Methods               | mAP  |  △   | Overall |
-| :--------------------------------: | :--: | :--: | :-----: |
-| Faster RCNN (Multi-scale training) |      |      |         |
-|          + anchor resize           |      |      |         |
-|           + cosine decay           |      |      |         |
-|              + mix up              |  ?   |  ?   |    ?    |
-
-|       Methods        | mAP  |  △   | Overall |
-| :------------------: | :--: | :--: | :-----: |
-| Cascade RCNN (HRNet) |      |      |         |
-|   + anchor resize    |  ？  |  ？  |   ？    |
-|    + cosine decay    |      |      |         |
-|       + mix up       |  ?   |  ?   |    ?    |
+|              Methods               |     mAP     |    △     | Overall  |
+| :--------------------------------: | :---------: | :------: | :------: |
+| Faster RCNN (Multi-scale training) | **0.60093** |   0.00   |   0.00   |
+|    + anchor resize (24, 32, 40)    |   0.58244   | -0.01849 | -0.01849 |
+|           + cosine decay           |   0.57452   | -0.00792 | -0.02641 |
+|              + mix up              |      ?      |    ?     |    ?     |
 
 ? indicates the experiments are not finished due to the limited time. If we are invited to write a paper, we will fulfill all the experiments.
 
@@ -46,7 +46,7 @@ We trained SSD-512 for 600 epochs, Faster RCNN for 30 epochs and Cascade RCNN fo
 
 ### Train (8 GPUs)
 
-Set up the environment according to [HRNet Instruction](https://github.com/HRNet/HRNet-Object-Detection#Quick%20Start). Take Faster RCNN as example,
+Set up the environment according to [HRNet Instruction](https://github.com/HRNet/HRNet-Object-Detection#Quick%20Start) . Take Faster RCNN as example,
 
 ```bash
 python -m torch.distributed.launch --nproc_per_node 8 tools/train.py configs/hrnet/faster_rcnn_hrnetv2p_w32_syncbn_mstrain_2x.py --launcher pytorch
@@ -54,9 +54,19 @@ python -m torch.distributed.launch --nproc_per_node 8 tools/train.py configs/hrn
 
 ### Inference (4 GPUs)
 
+Please download the weight first and put it into `{$Your working directory}/work_dirs/faster_rcnn_hrnetv2p_w32_syncbn_mstrain_2x/`
+
 ```bash
-python tools/test.py configs/hrnet/faster_rcnn_hrnetv2p_w32_syncbn_mstrain_2x.py work_dirs/faster_rcnn_hrnetv2p_w32_2x/model_final.pth --gpus 4 --eval bbox --out result.pkl
+python tools/test.py configs/hrnet/faster_rcnn_hrnetv2p_w32_syncbn_mstrain_2x.py work_dirs/faster_rcnn_hrnetv2p_w32_2x_2/epoch_25.pth --gpus 4 --eval bbox --out result.pkl
 ```
+
+The file you get does not fit `coco` format. Please use `convert.py` to convert it.
+
+```bash
+python convert.py [origin json] [target json]
+```
+
+
 
 ## Reference
 

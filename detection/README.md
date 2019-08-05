@@ -46,7 +46,7 @@ We trained SSD-512 for 600 epochs, Faster RCNN for 30 epochs and Cascade RCNN fo
 
 ### Train (8 GPUs)
 
-Set up the environment according to [HRNet Instruction]([https://github.com/HRNet/HRNet-Object-Detection#Quick%20Start](https://github.com/HRNet/HRNet-Object-Detection#Quick Start)). Take Faster RCNN as example,
+Set up the environment according to [HRNet Instruction](https://github.com/HRNet/HRNet-Object-Detection#Quick%20Start). Take Faster RCNN as example,
 
 ```bash
 python -m torch.distributed.launch --nproc_per_node 8 tools/train.py configs/hrnet/faster_rcnn_hrnetv2p_w32_syncbn_mstrain_2x.py --launcher pytorch

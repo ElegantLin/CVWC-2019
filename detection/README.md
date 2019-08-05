@@ -27,9 +27,9 @@ We trained Faster RCNN for 30 epochs. We used the best model according to the va
 
 And config `data_root` it in your [config file](https://github.com/ElegantLin/CVWC-2019/blob/master/detection/HRNet-Object-Detection/configs/hrnet/faster_rcnn_hrnetv2p_w32_syncbn_mstrain_2x.py)
 
-|                   Method                    |     mAP     | GFLOP | #Param | Sync BN | lr sched |                         pre-trained                          |                       detection model                        |           log           |                            config                            |                            result                            |
-| :-----------------------------------------: | :---------: | :---: | :----: | :-----: | :------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :---------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| Faster RCNN （HRNet, multi-scale training） | **0.60093** | 245.3 | 45.0M  |    Y    |    2x    | [HRNet_w32](https://1drv.ms/u/s!Aus8VCZ_C_33dYBMemi9xOUFR0w) | [epoch_25.pth](https://drive.google.com/open?id=1nFtlXrhfRX7Yi2PMgPgniBAn-MN4js9X) | [20190801_010901.log]() | [faster_rcnn_hrnetv2p_w32_syncbn_mstrain_2x.py](https://github.com/ElegantLin/CVWC-2019/blob/master/detection/HRNet-Object-Detection/configs/hrnet/faster_rcnn_hrnetv2p_w32_syncbn_mstrain_2x.py) | [results.json](https://github.com/ElegantLin/CVWC-2019/blob/master/detection/result.json) |
+|                   Method                    |     mAP     | GFLOPs | #Param | Sync BN | lr sched |                         pre-trained                          |                       detection model                        |           log           |                            config                            |                            result                            |
+| :-----------------------------------------: | :---------: | :----: | :----: | :-----: | :------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :---------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+| Faster RCNN （HRNet, multi-scale training） | **0.60093** | 245.3  | 45.0M  |    Y    |    2x    | [HRNet_w32](https://1drv.ms/u/s!Aus8VCZ_C_33dYBMemi9xOUFR0w) | [epoch_25.pth](https://drive.google.com/open?id=1nFtlXrhfRX7Yi2PMgPgniBAn-MN4js9X) | [20190801_010901.log]() | [faster_rcnn_hrnetv2p_w32_syncbn_mstrain_2x.py](https://github.com/ElegantLin/CVWC-2019/blob/master/detection/HRNet-Object-Detection/configs/hrnet/faster_rcnn_hrnetv2p_w32_syncbn_mstrain_2x.py) | [results.json](https://github.com/ElegantLin/CVWC-2019/blob/master/detection/result.json) |
 
 ## Other Experiments 
 
@@ -63,7 +63,7 @@ python tools/test.py configs/hrnet/faster_rcnn_hrnetv2p_w32_syncbn_mstrain_2x.py
 The file you get does not fit `coco` format. Please use `convert.py` to convert it.
 
 ```bash
-python convert.py [origin json] [target json]
+python convert.py -o [origin json] -t [target json]
 ```
 
 

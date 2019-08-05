@@ -14,11 +14,11 @@ We joined 3 tracks of 4 in this workshop which are [detection](https://github.co
 
 The final results are:
 
-|   Track    | mAP(single_cam in ReID) | top-1(single_cam) | top-5(single_cam) | mAP(cross_cam) | top-1(single_cam) | top-5(cross_cam) | FLOP  | Param |
-| :--------: | :---------------------: | :---------------: | :---------------: | :------------: | :---------------: | :--------------: | :---: | :---: |
-| Detection  |          0.60           |         -         |         -         |       -        |         -         |        -         | 45.0M | 245.3 |
-| Plain ReID |          0.84           |       0.95        |       0.99        |      0.46      |       0.87        |       0.93       |   -   |   -   |
-| Wild ReID  |          0.82           |       0.93        |       0.96        |      0.46      |       0.84        |       0.90       |   -   |   -   |
+|   Track    | mAP(single_cam in ReID) | top-1(single_cam) | top-5(single_cam) | mAP(cross_cam) | top-1(single_cam) | top-5(cross_cam) | GFLOPs | Param |
+| :--------: | :---------------------: | :---------------: | :---------------: | :------------: | :---------------: | :--------------: | :----: | :---: |
+| Detection  |          0.60           |         -         |         -         |       -        |         -         |        -         | 245.3  | 45.0M |
+| Plain ReID |          0.84           |       0.95        |       0.99        |      0.46      |       0.87        |       0.93       |   -    |   -   |
+| Wild ReID  |          0.82           |       0.93        |       0.96        |      0.46      |       0.84        |       0.90       |   -    |   -   |
 
 Please refer to the respective folder for more details.
 

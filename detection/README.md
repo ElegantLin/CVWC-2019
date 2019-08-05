@@ -60,7 +60,7 @@ Please download the weight first and put it into `{$Your HRNet-Object-detection 
 python tools/test.py configs/hrnet/faster_rcnn_hrnetv2p_w32_syncbn_mstrain_2x.py work_dirs/faster_rcnn_hrnetv2p_w32_2x_2/epoch_25.pth --gpus 4 --eval bbox --out result.pkl
 ```
 
-The file you get does not fit `coco` format. Please use `convert.py` to convert it.
+The file you get does not fit submission format. Please use `convert.py` to convert it.
 
 ```bash
 python convert.py -o [origin json] -t [target json]

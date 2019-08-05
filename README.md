@@ -6,10 +6,12 @@ ICCV 2019 Workshop &amp; Challenge on Computer Vision for Wildlife Conservation 
 ## Data Pre-processing
 Before we designed our model, we looked into the dataset carefully and the details are as follows:
 
-* The average size of bounding boxes:
-* The overlapping of bounding boxes:
-* The distribution of bounding boxes according to the number
-* The distribution of bounding boxes according to the position
+The distribution of bounding box according to size, count and square.
+
+![Count](https://github.com/ElegantLin/CVWC-2019/blob/master/doc/count.png)
+![Square](https://github.com/ElegantLin/CVWC-2019/blob/master/doc/square.png)
+![Width](https://github.com/ElegantLin/CVWC-2019/blob/master/doc/width.png)
+![Height](https://github.com/ElegantLin/CVWC-2019/blob/master/doc/height.png)
 
 
 ## One-stage Method

@@ -12,17 +12,17 @@ We trained Faster RCNN for 30 epochs. We used the best model according to the va
 
 ```
 --{$YOUR DATA ROOT}
-	--coco
-		--annotations
-			--instances_train2014.json
-			--instances_val2014.json
-			--instances_test2014.json
-		--train2014
-			--[train images]
-		--val2014
-			--[validation images]
-		--test2014
-			--[test images]
+  --coco
+    --annotations
+      --instances_train2014.json
+	  --instances_val2014.json
+      --instances_test2014.json
+	--train2014
+	  --[train images]
+	--val2014
+	  --[validation images]
+	--test2014
+	  --[test images]
 ```
 
 And config `data_root` it in your [config file](https://github.com/ElegantLin/CVWC-2019/blob/master/detection/HRNet-Object-Detection/configs/hrnet/faster_rcnn_hrnetv2p_w32_syncbn_mstrain_2x.py)
@@ -54,7 +54,7 @@ python -m torch.distributed.launch --nproc_per_node 8 tools/train.py configs/hrn
 
 ### Inference (4 GPUs)
 
-Please download the weight first and put it into `{$Your working directory}/work_dirs/faster_rcnn_hrnetv2p_w32_syncbn_mstrain_2x/`
+Please download the weight first and put it into `{$Your HRNet-Object-detection directory}/work_dirs/faster_rcnn_hrnetv2p_w32_syncbn_mstrain_2x/`
 
 ```bash
 python tools/test.py configs/hrnet/faster_rcnn_hrnetv2p_w32_syncbn_mstrain_2x.py work_dirs/faster_rcnn_hrnetv2p_w32_2x_2/epoch_25.pth --gpus 4 --eval bbox --out result.pkl
